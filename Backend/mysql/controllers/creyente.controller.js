@@ -38,7 +38,7 @@ const updateData = async (req, res) =>{
     try {
         const {id} = req.params;
         const connection = await dbConnection();
-        const result = await connection.query("UPDATE creyente SET ? WHERE idDIdentificacion =?", [req.body, id]);
+        const result = await connection.query("UPDATE creyente SET ? WHERE idIdentificacion =?", [req.body, id]);
         res.json(result);
     } catch (error) {
         res.status(500);
