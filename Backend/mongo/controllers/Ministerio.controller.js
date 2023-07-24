@@ -38,8 +38,8 @@ const oneData = async (req, res)=>{
 const updateData = async (req, res)=>{
     try {
         const info = await Ministerio.findOne({_id:req.params.id});
-        if (req.body.ministerio) {
-            info.ministerio = req.body.ministerio;
+        if (req.body.Ministerio) {
+            info.Ministerio = req.body.Ministerio;
         }
         await info.save();
         res.send(info);
