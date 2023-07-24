@@ -66,7 +66,7 @@ function injectarData(informacion) {
             <p class="description">Email: ${info.email}</p>
             <p class="description">Nro Celular: ${info.nroCelular}</p>
             <p class="description">Direccion: ${info.direccion}</p>
-            <p class="description">Id Barrio: ${info.nombreBarrio}</p>
+            <p class="description">Nombre Barrio: ${info.nombreBarrio}</p>
             <div class="btnEditDelete">
                 <button class="edit-button update" id="${info.idIdentificacion}" data-bs-toggle="modal" data-bs-target="#modalUpdate">
                 <svg class="edit-svgIcon" viewBox="0 0 512 512">

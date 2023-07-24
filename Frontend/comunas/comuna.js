@@ -14,7 +14,7 @@ async function loadData() {
         <div class="cookie-card">
             <span class="title">🏚️ ${info.nombreComuna}</span>
             <p class="description">Id Comuna: ${info.idComuna}</p>
-            <p class="description">Id Municipio: ${info.idMunicipio}</p>
+            <p class="description">Nombre Municipio: ${info.nombreMunicipio}</p>
             <div class="btnEditDelete">
                 <button class="edit-button update" id="${info.idComuna}" data-bs-toggle="modal" data-bs-target="#modalUpdate">
                 <svg class="edit-svgIcon" viewBox="0 0 512 512">
