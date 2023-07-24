@@ -77,15 +77,17 @@ const getBucaramanga = async (req,res)=>{
     }
 };
 
-//Listar creyentes de Cañaveral
-const getCanaveral = async (req,res)=>{
+//Listar creyentes de floridablanca
+const getFloridablanca = async (req,res)=>{
     try {
         const connection = await dbConnection();
         const datos = await connection.query(`
         SELECT c.idIdentificacion, c.nombres, c.email, c.nroCelular, c.direccion, b.nombreBarrio
         FROM creyente c
         JOIN barrio b ON c.idBarrio = b.idBarrio
-        WHERE b.nombreBarrio = 'Cañaveral'`);
+        JOIN comuna co ON b.idComuna = co.idComuna
+        JOIN municipio m ON co.idMunicipio = m.idMunicipio
+        WHERE m.nombreMunicipio = 'FloridaBlanca'`);
         res.send(datos);
     } catch (error) {
         res.status(404);
@@ -152,7 +154,7 @@ export const methodHTTP = {
     updateData,
     getOne,
     getBucaramanga,
-    getCanaveral,
+    getFloridablanca,
     getComuna5,
     getSanPio,
     getSantander

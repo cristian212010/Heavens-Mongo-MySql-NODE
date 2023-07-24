@@ -1,4 +1,4 @@
-const urlAll = "http://localhost:4100/api/creyentes/all";
+const urlAll = "http://localhost:4100/api/creyentes/";
 const urlAdd = "http://localhost:4100/api/creyentes/add";
 const urlDelete = "http://localhost:4100/api/creyentes/del";
 const urlOne = "http://localhost:4100/api/creyentes/one";
@@ -7,7 +7,7 @@ const urlUpdate = "http://localhost:4100/api/creyentes/upd";
 //Read
 export const allData = async () =>{
     try {
-        const response = await fetch(urlAll);
+        const response = await fetch(`${urlAll}/all`);
         const result = response.json();
         return result;
     } catch (error) {
@@ -68,6 +68,61 @@ export async function updateData(data,id){
             },
         });
         window.location.href = "index.html"
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+//Bucaramanga
+export const allBucaramanga = async () =>{
+    try {
+        const response = await fetch(`${urlAll}/bucaramanga`);
+        const result = response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+//Floridablanca
+export const allFloridablanca = async () =>{
+    try {
+        const response = await fetch(`${urlAll}/floridablanca`);
+        const result = response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+//Comuna 5
+export const allComuna5 = async () =>{
+    try {
+        const response = await fetch(`${urlAll}/comuna5`);
+        const result = response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+//San Pio
+export const allSanPio = async () =>{
+    try {
+        const response = await fetch(`${urlAll}/sanpio`);
+        const result = response.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+//Santander
+export const allSantander = async () =>{
+    try {
+        const response = await fetch(`${urlAll}/santander`);
+        const result = response.json();
+        return result;
     } catch (error) {
         console.log(error);
     }

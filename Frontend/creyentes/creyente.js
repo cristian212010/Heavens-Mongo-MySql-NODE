@@ -1,14 +1,64 @@
-import { allData, addData, deleteData, selectOne, updateData } from "./API.js";
+import {
+    allData,
+    addData,
+    deleteData,
+    selectOne,
+    updateData,
+    allBucaramanga,
+    allFloridablanca,
+    allComuna5,
+    allSanPio,
+    allSantander
+  } from "./API.js";
 
 document.addEventListener("DOMContentLoaded", ()=>{
     loadData();
 });
 
+const contenedor = document.querySelector("main");
 
 //Read
 async function loadData() {
     const informacion = await allData();
-    const contenedor = document.querySelector("main");
+    injectarData(informacion);
+    const selectCreyente = document.querySelector('#selectCreyente');
+    selectCreyente.addEventListener('change',switchFiltro);
+};
+
+const switchFiltro = async () =>{
+    const filtroCreyente = document.querySelector('#selectCreyente').value;
+    switch (filtroCreyente) {
+        case 'bucaramanga':
+            contenedor.innerHTML='';
+            const infoBucaramanga = await allBucaramanga();
+            injectarData(infoBucaramanga);
+            break;
+        case 'floridablanca':
+            contenedor.innerHTML='';
+            const infoFloridablanca = await allFloridablanca();
+            injectarData(infoFloridablanca);
+            break;
+        case 'comuna5':
+            contenedor.innerHTML='';
+            const infoComuna5 = await allComuna5();
+            injectarData(infoComuna5);
+            break;
+        case 'sanpio':
+            contenedor.innerHTML='';
+            const infoSanPio = await allSanPio();
+            injectarData(infoSanPio);
+            break;
+        case 'santander':
+            contenedor.innerHTML='';
+            const infoSantander = await allSantander();
+            injectarData(infoSantander);
+            break;
+        default:
+            break;
+    }
+};
+
+function injectarData(informacion) {
     informacion.forEach((info) => {
         contenedor.innerHTML+=`
         <div class="cookie-card">
@@ -16,7 +66,7 @@ async function loadData() {
             <p class="description">Email: ${info.email}</p>
             <p class="description">Nro Celular: ${info.nroCelular}</p>
             <p class="description">Direccion: ${info.direccion}</p>
-            <p class="description">Id Barrio: ${info.idBarrio}</p>
+            <p class="description">Id Barrio: ${info.nombreBarrio}</p>
             <div class="btnEditDelete">
                 <button class="edit-button update" id="${info.idIdentificacion}" data-bs-toggle="modal" data-bs-target="#modalUpdate">
                 <svg class="edit-svgIcon" viewBox="0 0 512 512">
