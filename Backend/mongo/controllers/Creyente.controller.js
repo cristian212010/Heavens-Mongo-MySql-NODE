@@ -33,7 +33,7 @@ const oneData = async (req, res)=>{
         res.status(404);
         res.send({error: "Creyente no existe"});
     }
-}
+};
 
 const updateData = async (req, res)=>{
     try {
