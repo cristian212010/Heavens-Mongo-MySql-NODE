@@ -3,7 +3,7 @@ import dbConnection from "../config/dbConnect.js";
 const getAll = async (req, res) =>{
     try {
         const connection = await dbConnection();
-        const result = await connection.query("SELECT * FROM creyente");
+        const result = await connection.query("SELECT idIdentificacion, nombres,email,nroCelular,direccion,barrio.nombreBarrio FROM creyente JOIN barrio ON creyente.idBarrio = barrio.idBarrio");
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -59,10 +59,101 @@ const getOne = async (req, res) => {
     };
 };
 
+//Listar creyentes sde Bucaramanga
+const getBucaramanga = async (req,res)=>{
+    try {
+        const connection = await dbConnection();
+        const datos = await connection.query(`SELECT c.idIdentificacion, c.nombres, c.email, c.nroCelular, c.direccion, b.nombreBarrio
+        FROM creyente c
+        JOIN barrio b ON c.idBarrio = b.idBarrio
+        JOIN comuna co ON b.idComuna = co.idComuna
+        JOIN municipio m ON co.idMunicipio = m.idMunicipio
+        JOIN departamento d ON m.idDepartamento = d.idDepartamento
+        WHERE m.nombreMunicipio = 'Bucaramanga'`);
+        res.send(datos);
+    } catch (error) {
+        res.status(404);
+        res.send(error.message);
+    }
+};
+
+//Listar creyentes de Cañaveral
+const getCanaveral = async (req,res)=>{
+    try {
+        const connection = await dbConnection();
+        const datos = await connection.query(`
+        SELECT c.idIdentificacion, c.nombres, c.email, c.nroCelular, c.direccion, b.nombreBarrio
+        FROM creyente c
+        JOIN barrio b ON c.idBarrio = b.idBarrio
+        WHERE b.nombreBarrio = 'Cañaveral'`);
+        res.send(datos);
+    } catch (error) {
+        res.status(404);
+        res.send(error.message);
+    }
+};
+
+//Listar Creyentes de la comuna 5
+const getComuna5 = async (req,res)=>{
+    try {
+        const connection = await dbConnection();
+        const datos = await connection.query(`
+        SELECT c.idIdentificacion, c.nombres, c.email, c.nroCelular, c.direccion, b.nombreBarrio
+        FROM creyente c
+        JOIN barrio b ON c.idBarrio = b.idBarrio
+        JOIN comuna co ON b.idComuna = co.idComuna
+        WHERE co.nombreComuna = 'Comuna 5'`);
+        res.send(datos);
+    } catch (error) {
+        res.status(404);
+        res.send(error.message);
+    }
+};
+
+//Listar Creyentes de San Pio
+const getSanPio = async (req,res)=>{
+    try {
+        const connection = await dbConnection();
+        const datos = await connection.query(`
+        SELECT c.idIdentificacion, c.nombres, c.email, c.nroCelular, c.direccion, b.nombreBarrio
+        FROM creyente c
+        JOIN barrio b ON c.idBarrio = b.idBarrio
+        WHERE b.nombreBarrio = 'San Pio'`);
+        res.send(datos);
+    } catch (error) {
+        res.status(404);
+        res.send(error.message);
+    }
+};
+
+//Listar Creyentes de Santander
+const getSantander = async (req,res)=>{
+    try {
+        const connection = await dbConnection();
+        const datos = await connection.query(`
+        SELECT c.idIdentificacion, c.nombres, c.email, c.nroCelular, c.direccion, b.nombreBarrio
+        FROM creyente c
+        JOIN barrio b ON c.idBarrio = b.idBarrio
+        JOIN comuna co ON b.idComuna = co.idComuna
+        JOIN municipio m ON co.idMunicipio = m.idMunicipio
+        JOIN departamento d ON m.idDepartamento = d.idDepartamento
+        WHERE d.nombreDepartamento = 'Santander'`);
+        res.send(datos);
+    } catch (error) {
+        res.status(404);
+        res.send(error.message);
+    }
+};
+
 export const methodHTTP = {
     getAll,
     insertData,
     deleteData,
     updateData,
-    getOne
+    getOne,
+    getBucaramanga,
+    getCanaveral,
+    getComuna5,
+    getSanPio,
+    getSantander
 };

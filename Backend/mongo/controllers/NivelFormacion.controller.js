@@ -1,12 +1,12 @@
-import Creyente from "../models/Creyente.js";
+import Formacion from "../models/Formacion.js";
 
 const getAll = async (req, res)=>{
-    const info = await Creyente.find();
+    const info = await Formacion.find();
     res.json(info);
 };
 
 const insertData = async (req, res)=>{
-    const info = new Creyente(req.body);
+    const info = new Formacion(req.body);
     try {
         const nuevaInfo = await info.save();
         res.json(nuevaInfo);
@@ -17,47 +17,35 @@ const insertData = async (req, res)=>{
 
 const deleteData = async (req, res)=>{
     try {
-        await Creyente.deleteOne({_id:req.params.id});
+        await Formacion.deleteOne({_id:req.params.id});
         res.status(204).send();
     } catch (error) {
         res.status(404);
-        res.send({error: "Creyente no existe"});
+        res.send({error: "Formacion no existe"});
     }
 };
 
 const oneData = async (req, res)=>{
     try {
-        const info = await Creyente.findOne({_id:req.params.id});
+        const info = await Formacion.findOne({_id:req.params.id});
         res.send(info);
     } catch (error) {
         res.status(404);
-        res.send({error: "Creyente no existe"});
+        res.send({error: "Formacion no existe"});
     }
 }
 
 const updateData = async (req, res)=>{
     try {
-        const info = await Creyente.findOne({_id:req.params.id});
-        if (req.body.nombre) {
-            info.nombre = req.body.nombre;
-        }
-        if (req.body.edad) {
-            info.edad = req.body.edad;
-        }
+        const info = await Formacion.findOne({_id:req.params.id});
         if (req.body.nivelFormacion) {
             info.nivelFormacion = req.body.nivelFormacion;
-        }
-        if (req.body.nivelRuta) {
-            info.nivelRuta = req.body.nivelRuta;
-        }
-        if (req.body.ministerio) {
-            info.ministerio = req.body.ministerio;
         }
         await info.save();
         res.send(info);
     } catch (error) {
         res.status(404);
-        res.send({error: "Creyente no existe"});
+        res.send({error: "Formacion no existe"});
     }
 };
 

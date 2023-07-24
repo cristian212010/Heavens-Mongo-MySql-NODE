@@ -45,36 +45,36 @@ CREATE TABLE creyente(
 );
 
 -- Insertar datos en la tabla "departamento"
-INSERT INTO departamento (nombreDepartamento) VALUES ('Antioquia');
-INSERT INTO departamento (nombreDepartamento) VALUES ('Valle del Cauca');
-INSERT INTO departamento (nombreDepartamento) VALUES ('Bogotá D.C.');
+INSERT INTO departamento (idDepartamento, nombreDepartamento) VALUES (1, 'Santander');
 
 -- Insertar datos en la tabla "municipio"
-INSERT INTO municipio (nombreMunicipio, idDepartamento) VALUES ('Medellín', 1);
-INSERT INTO municipio (nombreMunicipio, idDepartamento) VALUES ('Cali', 2);
-INSERT INTO municipio (nombreMunicipio, idDepartamento) VALUES ('Soacha', 3);
+INSERT INTO municipio (idMunicipio, nombreMunicipio, idDepartamento) VALUES
+(1, 'Bucaramanga', 1),
+(2, 'Piedecuesta', 1),
+(4, 'FloridaBlanca', 1),
+(5, 'Giron', 1);
 
 -- Insertar datos en la tabla "comuna"
-INSERT INTO comuna (nombreComuna, idMunicipio) VALUES ('Comuna 1', 1);
-INSERT INTO comuna (nombreComuna, idMunicipio) VALUES ('Comuna 2', 1);
-INSERT INTO comuna (nombreComuna, idMunicipio) VALUES ('Comuna 3', 2);
-INSERT INTO comuna (nombreComuna, idMunicipio) VALUES ('Comuna 4', 2);
+INSERT INTO comuna (idComuna, nombreComuna, idMunicipio) VALUES
+(1, 'Comuna 2', 1),
+(2, 'Comuna 10', 1),
+(3, 'Comuna 3', 4),
+(4, 'Comuna 4', 2),
+(5, 'Comuna 5', 1);
 
 -- Insertar datos en la tabla "barrio"
-INSERT INTO barrio (nombreBarrio, idComuna) VALUES ('Barrio A', 1);
-INSERT INTO barrio (nombreBarrio, idComuna) VALUES ('Barrio B', 1);
-INSERT INTO barrio (nombreBarrio, idComuna) VALUES ('Barrio C', 2);
-INSERT INTO barrio (nombreBarrio, idComuna) VALUES ('Barrio D', 3);
+INSERT INTO barrio (idBarrio, nombreBarrio, idComuna) VALUES
+(1, 'Cañaveral', 3),
+(2, 'Diamante II', 2),
+(3, 'Provenza', 2),
+(4, 'Campohermoso', 5),
+(5, 'San Pio', 4);
 
 -- Insertar datos en la tabla "creyente"
-INSERT INTO creyente (nombres, email, nroCelular, direccion, idBarrio) 
-VALUES ('Juan Pérez', 'juan@example.com', 1234567890, 'Calle 123, A', 1);
-
-INSERT INTO creyente (nombres, email, nroCelular, direccion, idBarrio) 
-VALUES ('María Gómez', 'maria@example.com', 9876543210, 'Carrera 456, B', 2);
-
-INSERT INTO creyente (nombres, email, nroCelular, direccion, idBarrio) 
-VALUES ('Carlos López', 'carlos@example.com', 4567890123, 'Avenida 789, C', 3);
-
-INSERT INTO creyente (nombres, email, nroCelular, direccion, idBarrio) 
-VALUES ('Ana Martínez', 'ana@example.com', 7890123456, 'Calle 567, D', 4);
+INSERT INTO creyente (idIdentificacion, nombres, email, nroCelular, direccion, idBarrio) VALUES
+(1, 'Maria Gonzalez', 'maria@gmail.com', '987654321', 'Calle 123', 1),
+(2, 'Luis Ramirez', 'luis@hotmail.com', '567891234', 'Av. Principal', 3),
+(3, 'Ana Smith', 'ana.smith@gmail.com', '111222333', 'Street 45', 2),
+(4, 'Pedro Martinez', 'pedro.martinez@yahoo.com', '444555666', 'Avenida 7', 4),
+(5, 'Laura Fernandez', 'laura.fernandez@outlook.com', '777888999', 'Plaza Mayor', 1)
+(6, 'Luis Perez', 'luis@gmail.com', '1234567', 'Transversal 123', 5);
