@@ -3,7 +3,10 @@ import dbConnection from "../config/dbConnect.js";
 const getAll = async (req, res) =>{
     try {
         const connection = await dbConnection();
-        const result = await connection.query("SELECT idIdentificacion, nombres,email,nroCelular,direccion,barrio.nombreBarrio FROM creyente JOIN barrio ON creyente.idBarrio = barrio.idBarrio");
+        const result = await connection.query(`
+        SELECT c.idIdentificacion, c.nombres, c.email, c.nroCelular, c.direccion, b.nombreBarrio
+        FROM creyente c
+        JOIN barrio b ON c.idBarrio = b.idBarrio;`);
         res.json(result);
     } catch (error) {
         res.status(500);
